@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+</script>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">ATG{{firstName}}</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <nav class="mdl-navigation">
+                    <!-- colocar navegação -->
+                    <!--<a class="mdl-navigation__link" href="" style="color:gray">Home</a>
+               <a class="mdl-navigation__link" href="" style="color:gray">About</a>      -->
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">ATG</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Estatísticas</a>
+                <a class="mdl-navigation__link" href="">Serviços</a>
+                <a class="mdl-navigation__link" href="">Configuração</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
+                    <div class="" style="background-color:blue">
+                        <div><img style="max-width:25%;max-height:25%" src="EUR.png" /> <span >EUR </span> <b style="padding-left:30%"> € 8,88</b></div>
+                    <!--<div class="mdl-card__text"> 
+                        
+                        </div>-->
+                    </div>
+                </div>
+                
+
+                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
+                    <div class="" style="background-color:blue">
+                        <div><img style="max-width:25%;max-height:25%" src="GBP.png" /> GBP </div>
+                    </div>
+                    <div class="mdl-card__text"> £ 8,88</div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col mdl-card mdl-shadow--2dp">
+                    <div class="mdl-card__title" style="background-color:blue">
+                        <div><img style="max-width:25%;max-height:25%" src="JPY.png" /> JPY</div>
+                    </div>
+                    <div class="mdl-card__text">¥ 8,88</div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
+                    <div class="" style="background-color:blue">
+                        <div><img style="max-width:25%;max-height:25%" src="CNH.png" /> CNH</div>
+                    </div>
+                    <div class="mdl-card__text">¥ 8,88</div>
+                </div>
+            </div>
+            <div class="mdl-grid">
+                <div class="md-cell ">
+                    <div class="mdl-grid">
+                        <select name="" id="">
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                            <option value="CNH">CNH</option>
+                        </select>
+                    </div>
+                    <div class="md-cell">
+                        <input type="number" />
+                    </div>
+                </div>
+                <div class="md-cell md-cell--2-col">
+                    <div class="mdl-grid">
+                        <select name="" id="">
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                            <option value="CNH">CNH</option>
+                        </select>
+                    </div>
+                    <div class="md-cell">
+                        <input type="number" />
+                    </div>
+                    </div>
+                </div>
+            
+        </main>
+    </div>
+</body>
+
+</html>
