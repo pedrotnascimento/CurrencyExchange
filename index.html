@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+      
     <!-- PARA APRENDER, USEI FRAMEWORK MATERIAL, MAS DEVERIA TER USADO MATERIALIZE, DEIXA QUIETO -->
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <link rel="stylesheet" href="styles.css">
 
     <!--angular -->
@@ -14,8 +20,13 @@
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl" class="BACKGROUND-ICE">
+    <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-js-layout ">
+        <div class="mdl-layout--fixed-header">
         <header class="mdl-layout__header" style="background-color:rgb(0,200,200)">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
@@ -23,23 +34,24 @@
                 <!-- link para ATG -->
                 <span class="mdl-layout-title"><a  href="http://www.americastg.com/pt/ATG_pt"> ATG <img ng-src="imgs/atgT.png"/> </a></span>
 
-                <div class="mdl-layout-spacer"></div>
+                <!--<div class="mdl-layout-spacer"></div>-->
                 <!-- Navigation -->
-                <nav class="mdl-navigation">
+                <div class="mdl-navigation">
 
                     <!--atualiza os valores-->
+                        <b>{{hora}}</b>
                     <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:gray">Update</button>
-                    <b>{{hora}}</b>
-                </nav>
+                </div>
             </div>
         </header>
+        </div>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">ATG <img ng-src="imgs/atg.png"/> 
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Estatísticas</a>
-                <a class="mdl-navigation__link" href="">Serviços</a>
-                <a class="mdl-navigation__link" href="">Configuração</a>
-            </nav>
+            <span class="mdl-layout-title">ATG <img ng-src="imgs/atg.png"/> </span>
+            <div class="mdl-navigation">
+                <a class=" mdl-navigation__link" href="">Estatísticas</a>
+                <a class=" mdl-navigation__link" href="">Serviços</a>
+                <a class=" mdl-navigation__link" href="">Configuração</a>
+            </div>
         </div>
 
         <!-- core da aplicação abaixo-->
