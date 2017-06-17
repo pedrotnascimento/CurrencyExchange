@@ -27,14 +27,11 @@
                 <!-- link para ATG -->
                 <span class="mdl-layout-title"><a  href="http://www.americastg.com/pt/ATG_pt"> ATG <img ng-src="imgs/atgT.png"/> </a></span>
 
-                <!--<div class="mdl-layout-spacer"></div>-->
+                <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
-                <div class="mdl-navigation">
-
-                    <!--atualiza os valores-->
-                        <b>{{hora}}</b>
-                    <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:gray">Update</button>
-                </div>
+                <!--atualiza os valores-->
+                    <b lass="mdl-navigation__link" >{{hora}}</b>
+                <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:rgb(0,200,200)">  <i class="material-icons">loop</i></button>
             </div>
         </header>
         </div>
@@ -67,15 +64,13 @@
                     </div>
             </div>
 
-    <div class="row ">
-        <div class="col m2 offset-m5 s10 offset-s1 INFO-EXCHANGE  ">
-            <!--<div class="mdl-grid">-->
+    <div class="row WHITE">
+        <div class="col m2 offset-m5 s10 offset-s1 INFO-EXCHANGE  BACKGROUND-CYAN BORDER-RADIUS ">
+
                 <span> Exchange</span>
                 <input class="INPUT" min=0 size=3 style="width:20%" ng-model="currency_value_from" type="number" />
-            <!--</div>-->
-        
-        <!--<div class="col ">
-            <div class="mdl-grid">-->
+
+
                 <select id="fromSel" ng-click="updateFrom()" class="INPUT" ng-model="currency_from"  >
                             <option value="USD" selected>USD - Dollar</option>
                             <option value="GBP">GBP - Pound Sterling</option>
@@ -83,12 +78,7 @@
                             <option value="JPY">JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                         </select>
-            <!--</div>
 
-        </div>-->
-
-        <!--<div class="col">-->
-            <!--<div class="mdl-grid">-->
                 To <select id="toSel" ng-click="updateTo()" class="INPUT" ng-model="currency_to" >
                             <option value="USD" >USD - Dollar</option>
                             <option value="GBP" >GBP - Pound Sterling</option>
@@ -96,20 +86,25 @@
                             <option value="JPY">JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                     </select>
-            <!--</div>-->
-        <!--</div>-->
         </div>
     </div>
-    <div class="mdl-grid">
+    <div class="mdl-grid ">
         <div class="mdl-cell">
-            <center class="INFO-CENTER">
-                {{currencies[currency_from].symbol}} {{currency_value_from}} ({{currency_from}}) is equal to {{currencies[currency_to].symbol}} {{ calcExchange(currency_value_from)}} ({{currency_to}})
+            
+            <center class="INFO-CURRENCY WHITE">
+                <span class=" BACKGROUND-CYAN BORDER-RADIUS">
+                    {{currencies[currency_from].symbol}} {{currency_value_from}} ({{currency_from}}) is equal to {{currencies[currency_to].symbol}} {{ calcExchange(currency_value_from)}} ({{currency_to}})
+                </span>
             </center>
         </div>
     </div>
 
     <!--{{currencies}}-->        
     <small>(obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
+    
+    <div>
+        <small>(obs2: depois de ver no browse, ver no modo mobile, ou no próprio mobile em <a href="pedrotnascimento.github.io">pedrotnascimento.github.io</a>)</small>
+    </div>
     </main>
     </div>
 
@@ -120,22 +115,12 @@
 <!--CARREGAR MATERIALIZE ANTES DE ANGULAR --> 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="app.js"></script>
+
     <script>
         (function(){
          $(document).ready(function() {
             $('#fromSel').material_select();
-            $('#toSel').material_select();
-            // $('#fromSel').on('click', function(){
-            //     console.log("asdlkf");// });
-
-            // // Template.objectsList.events({
-            // "change #fromSel": function (event) {
-            //     var selectedValue = $("#fromSel").val();
-            //     console.log("çsdhfsdfhsd");
-            //     // do something with selectedValue
-            // }
-        // });
-                        
+            $('#toSel').material_select();                        
           });
         })();
     </script>

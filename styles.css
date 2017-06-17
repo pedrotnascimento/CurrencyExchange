@@ -1,8 +1,13 @@
-.INFO-CENTER {
+.INFO-CURRENCY {
     right: 0;
     left: 0;
     position: absolute;
     font-size: 1.5em;
+}
+
+.BORDER-RADIUS{
+    border-radius: 1em;
+    padding: 0.5em;
 }
 
 
@@ -47,6 +52,7 @@ header a:visited {
       background-color: white ! important;
     color: #26a69a;
 }
+
 
 
 .BACKGROUND-ICE{
