@@ -42,8 +42,9 @@ header a:visited {
     
 }
 
-.SELECT{
-    background-color: white;
+.INPUT{
+    
+      background-color: white ! important;
     color: #26a69a;
 }
 
