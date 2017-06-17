@@ -42,21 +42,15 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     };
 
     function getValue(currency) {
-        console.log(currency);
         $http.get("http://api.fixer.io/latest?base=USD&symbols=" + currency.currency).
         then(function(e) {
             console.log("success");
-            // console.log(e);
             var value = e.data.rates[currency.currency];
             if (currency.value != "N/A") {
                 var rate = value / currency.value - 1;
                 currency.rate = (rate * 100).toString().slice(0, 4);
             }
             currency.value = value;
-
-
-
-            // console.log(currency);
 
         }, function(e) {
             console.log("error");
@@ -98,15 +92,14 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         return (value * val_to / val_from).toString().slice(0, 6) || "Digite para converter";
     }
 
+
+    //APRENDIZADO: o fato de alterar o bind no angular não altera no documento imediatamente
+    // muda se alterar pelo jQuery
     function updateFrom() {
 
         $("#fromSel").val($scope.currency_from);
         $("#fromSel").material_select("destroy");
         $("#fromSel").material_select("");
-        // $("#fromSel").change();
-        // $scope.currency_from = document.getElementById("#fromSel").value;
-        //  console.log($("#fromSel").val);
-        console.log("klasjdfh");
     }
 
     function updateTo() {
