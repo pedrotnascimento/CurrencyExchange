@@ -17,6 +17,7 @@
     <!--angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="app.js"></script>
+    
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl" class="BACKGROUND-ICE">
@@ -56,51 +57,55 @@
 
         <!-- core da aplicação abaixo-->
         <main class="mdl-layout__content">
-            <div class="mdl-grid">
-                <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp BACKGROUND-CYAN WHITE">
-                        <img style="max-width:25%; " ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
-                        
-                            <span style="font-size:0.75em"> USD/{{currency.name}} </span>
-            <span style="font-size: 1.25em; "> 
-                                {{currency.symbol}} {{currency.value}} 
-                            <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.75em"> 
-                                ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
-                                <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
-                            </span>
-            </span>
-            <!--<div class="mdl-card__text"></div>-->
-        </div>
-    </div>
-
-    <div class="mdl-grid INFO-EXCHANGE">
-        <div class="mdl-cell mdl-cell--1-col-phone">
-            <div class="mdl-grid">
-                Exchange<input min=0 size=3 style="width:20%" ng-model="currency_value_from" type="number" />
+            <div class="row">
+                <div class="mdl-grid col ">
+                    <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-phone  mdl-shadow--2dp BACKGROUND-CYAN WHITE">
+                            <img style="max-width:25%; " ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
+                            
+                                <span style="font-size:0.75em"> USD/{{currency.name}} </span>
+                <span style="font-size: 1.25em; "> 
+                                    {{currency.symbol}} {{currency.value}} 
+                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.75em"> 
+                                    ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
+                                    <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
+                                </span>
+                </span>
+                <!--<div class="mdl-card__text"></div>-->
+                        </div>
+                    </div>
             </div>
-        </div>
-        <div class="mdl-cell mdl-cell--1-col-phone">
-            <div class="mdl-grid">
-                <select ng-model="currency_from"  value="EUR">
+
+    <div class="row ">
+        <div class="col m2 offset-m5 s10 offset-s1 INFO-EXCHANGE  ">
+            <!--<div class="mdl-grid">-->
+                <span> Exchange</span>
+                <input min=0 size=3 style="width:20%" ng-model="currency_value_from" type="number" />
+            <!--</div>-->
+        
+        <!--<div class="col ">
+            <div class="mdl-grid">-->
+                <select class="SELECT" ng-model="currency_from"  value="EUR">
                             <option value="USD" >USD - Dollar</option>
                             <option value="EUR" selected>EUR- Euro</option>
                             <option value="GBP">GBP - Pound Sterling</option>
                             <option value="JPY">JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                         </select>
-            </div>
+            <!--</div>
 
-        </div>
+        </div>-->
 
-        <div class="mdl-cell mdl-cell mdl-cell--1-col-phone">
-            <div class="mdl-grid">
-                To <select ng-model="currency_to" value="GBP">
+        <!--<div class="col">-->
+            <!--<div class="mdl-grid">-->
+                To <select class="SELECT" ng-model="currency_to" value="GBP">
                             <option value="USD" >USD - Dollar</option>
                             <option value="EUR" >EUR- Euro</option>
                             <option value="GBP" selected>GBP - Pound Sterling</option>
                             <option value="JPY">JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                     </select>
-            </div>
+            <!--</div>-->
+        <!--</div>-->
         </div>
     </div>
     <div class="mdl-grid">
@@ -111,9 +116,18 @@
         </div>
     </div>
 
-    <!--{{currencies}}-->
+    <!--{{currencies}}-->        
     <small>(obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
     </main>
     </div>
+
+    <script>
+        (function(){
+         $(document).ready(function() {
+            $('select').material_select();
+        });
+        })();
+    </script>
 </body>
+
 </html>
