@@ -99,4 +99,18 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         return (value * val_to / val_from).toString().slice(0, 6) || "Digite para converter";
     }
 
+    function updateFrom() {
+
+        $("#fromSel").material_select("destroy");
+        $("#fromSel").material_select("");
+        $scope.currency_from = document.getElementById("#fromSel").value;
+        //  console.log($("#fromSel").val);
+        console.log("klasjdfh");
+    }
+
+    function updateTo() {
+        $("#toSel").material_select("destroy");
+        $("#toSel").material_select("");
+    }
+
 });
