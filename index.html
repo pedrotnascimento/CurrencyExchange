@@ -24,7 +24,7 @@
                 <!-- Title -->
 
                 <!-- link para ATG -->
-                <span class="mdl-layout-title"><a  href="http://www.americastg.com/pt/ATG_pt"> ATG <img ng-src="imgs/atgT.png"/> </a></span>
+                <span class="mdl-layout-title"><a  href="https://www.americastg.com/pt/ATG_pt"> ATG <img ng-src="imgs/atgT.png"/> </a></span>
 
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
@@ -68,7 +68,7 @@
 
                 <span> Exchange</span>
                 <input class="INPUT" min=0 size=3 style="width:20%" ng-model="currency_value_from" type="number" />
-                <button ng-click="invertCalc()"> &lt; &gt; </button>
+                <button ng-click="invertCalc()" style="color:black;"> <i class="material-icons">shuffle</i> </button>
 
 
                 <select id="fromSel" ng-click="updateFrom()" class="INPUT" ng-model="currency_from"  >
@@ -82,8 +82,8 @@
                 To <select id="toSel" ng-click="updateTo()" class="INPUT" ng-model="currency_to" >
                             <option value="USD" >USD - Dollar</option>
                             <option value="GBP" >GBP - Pound Sterling</option>
-                            <option value="EUR">EUR- Euro</option>
-                            <option value="JPY"  selected>JPY - Yen</option>
+                            <option value="EUR" selected>EUR- Euro</option>
+                            <option value="JPY"  >JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                     </select>
         </div>
@@ -103,7 +103,7 @@
     <small>(obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
     
     <div>
-        <small>(obs2: depois de ver no browse, ver no modo mobile, ou no próprio mobile em <a href="http://pedrotnascimento.github.io">pedrotnascimento.github.io</a>)</small>
+        <small>(obs2: depois de ver no browse, ver no modo mobile, ou no próprio mobile em <a href="https://pedrotnascimento.github.io">pedrotnascimento.github.io</a>)</small>
     </div>
     </main>
     </div>

@@ -42,7 +42,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     };
 
     function getValue(currency) {
-        $http.get("http://api.fixer.io/latest?base=USD&symbols=" + currency.currency).
+        $http.get("https://api.fixer.io/latest?base=USD&symbols=" + currency.currency).
         then(function(e) {
             console.log("success");
             var value = e.data.rates[currency.currency];
@@ -79,6 +79,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         }, 30000);
     }
 
+
     $scope.updateValues();
     startIntervals();
 
@@ -114,8 +115,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         $scope.currency_from = $scope.currency_to;
         $scope.currency_to = temp;
         updateTo();
-        updateFrom();
-        
+        updateFrom();    
     }
 
 });
