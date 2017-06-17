@@ -146,16 +146,11 @@
                             {{currency.name}}  {{currency.symbol}} {{currency.value}} 
                             <span ng-class="currency.rate>=0? 'GREEN':'RED'"> {{currency.rate!= "--"?"(":""}} {{currency.rate>0? "+":""}}  {{currency.rate!= "--"? currency.rate+ "%)":""}}</span>
                         </span>
-
-
-
-            <!--<div class="mdl-card__text"> 
-                        
-                        </div>-->
+            <!--<div class="mdl-card__text"></div>-->
         </div>
     </div>
 
-    <div class="mdl-grid " style="margin-right: 30% !important;  margin-left: 30% !important; font-size:1.5em">
+    <div class="mdl-grid " style="margin-right: 25% !important;  margin-left: 25% !important; font-size:1.25em">
         <div class="mdl-cell mdl-cell--1-col-phone">
             <div class="mdl-grid">
                 Exchange <select ng-model="currency_from" name="" id="" value="EUR">
