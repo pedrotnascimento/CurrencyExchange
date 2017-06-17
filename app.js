@@ -4,6 +4,11 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     $scope.currency_from = "GBP";
     $scope.currency_value_to = 0;
     $scope.currency_value_from = 1;
+    $scope.hora="";
+
+    $interval(function(){
+        $scope.hora = (new Date()).toLocaleString();
+    }, 1000);
     //€£¥
     $scope.currencies = {
         EUR: {
