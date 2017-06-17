@@ -68,11 +68,12 @@
 
                 <span> Exchange</span>
                 <input class="INPUT" min=0 size=3 style="width:20%" ng-model="currency_value_from" type="number" />
+                <button ng-click="invertCalc()"> &lt; &gt; </button>
 
 
                 <select id="fromSel" ng-click="updateFrom()" class="INPUT" ng-model="currency_from"  >
-                            <option value="USD" selected>USD - Dollar</option>
-                            <option value="GBP">GBP - Pound Sterling</option>
+                            <option value="USD" >USD - Dollar</option>
+                            <option value="GBP" selected>GBP - Pound Sterling</option>
                             <option value="EUR" >EUR- Euro</option>
                             <option value="JPY">JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
@@ -81,8 +82,8 @@
                 To <select id="toSel" ng-click="updateTo()" class="INPUT" ng-model="currency_to" >
                             <option value="USD" >USD - Dollar</option>
                             <option value="GBP" >GBP - Pound Sterling</option>
-                            <option value="EUR" selected>EUR- Euro</option>
-                            <option value="JPY">JPY - Yen</option>
+                            <option value="EUR">EUR- Euro</option>
+                            <option value="JPY"  selected>JPY - Yen</option>
                             <option value="CNH">CNH - Yuan</option>
                     </select>
         </div>
@@ -111,18 +112,22 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<!--CARREGAR MATERIALIZE ANTES DE ANGULAR --> 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="app.js"></script>
+
 
     <script>
-        (function(){
+        // (function(){
          $(document).ready(function() {
-            $('#fromSel').material_select();
-            $('#toSel').material_select();                        
+            $('#fromSel').material_select("");
+            // $('#fromSel').on('change',function(){ console.log("kljsdfh")});
+            $('#toSel').material_select("");
+                                
           });
-        })();
+
+        // })();
     </script>
+    <!--CARREGAR MATERIALIZE ANTES DE ANGULAR --> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="app.js"></script>
 </body>
 
 </html>

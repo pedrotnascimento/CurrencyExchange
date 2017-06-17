@@ -1,8 +1,7 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http, $interval) {
-    $scope.currency_to = "EUR";
-    $scope.currency_from = "GBP";
-    $scope.currency_value_to = 0;
+    $scope.currency_to = $("#toSel").val();
+    $scope.currency_from =  $("#fromSel").val();
     $scope.currency_value_from = 1;
     $scope.hora="";
 
@@ -101,16 +100,29 @@ app.controller('myCtrl', function($scope, $http, $interval) {
 
     function updateFrom() {
 
+        $("#fromSel").val($scope.currency_from);
         $("#fromSel").material_select("destroy");
         $("#fromSel").material_select("");
-        $scope.currency_from = document.getElementById("#fromSel").value;
+        // $("#fromSel").change();
+        // $scope.currency_from = document.getElementById("#fromSel").value;
         //  console.log($("#fromSel").val);
         console.log("klasjdfh");
     }
 
     function updateTo() {
+        $("#toSel").val($scope.currency_to);
         $("#toSel").material_select("destroy");
         $("#toSel").material_select("");
+    }
+
+    $scope.invertCalc = function () {
+
+        var temp = $scope.currency_from;
+        $scope.currency_from = $scope.currency_to;
+        $scope.currency_to = temp;
+        updateTo();
+        updateFrom();
+        
     }
 
 });
