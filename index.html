@@ -1,33 +1,160 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .INFO-CENTER {
+        right: 0;
+        left: 0;
+        position: absolute;
+        font-size: 1.5em;
+    }
+    
+    ;
+    .BOX {
+        color: #fff;
+        background-color: blue;
+    }
+
+    .GREEN {
+        color:#0f0;
+        font-weight: bold;
+    }
+
+    .RED{
+        color: #f00;
+        font-weight: bold;  
+    }
+</style>
+
+<head>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+
 <body ng-app="myApp" ng-controller="myCtrl">
 
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http, $interval) {
+            $scope.currency_to = "EUR";
+            $scope.currency_from = "GBP";
+            $scope.currency_value_to = 0;
+            $scope.currency_value_from = 1;
+            //€£¥
+            $scope.currencies = {
+                EUR: {
+                    name: "EUR",
+                    currency: "EUR",
+                    symbol: "€",
+                    value: 0.9, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
+                    rate: "--"
 
-<script>
-var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-});
-</script>
+                },
+                GBP: {
+                    name: "GBP",
+                    currency: "GBP",
+                    symbol: "£",
+                    value: 0.7, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
+                    rate: "--"
+                },
+                JPY: {
+                    name: "JPY",
+                    currency: "JPY",
+                    symbol: "¥",
+                    value: "N/A",
+                    rate: "--"
+                },
+                CNH: {
+                    name: "CNH",
+                    currency: "CNY",
+                    symbol: "¥",
+                    value: "N/A",
+                    rate: "--"
+                },
+            };
+
+            function getValue(currency) {
+                console.log(currency);
+                $http.get("http://api.fixer.io/latest?base=USD&symbols=" + currency.currency).
+                then(function(e) {
+                    console.log("success");
+                    // console.log(e);
+                    var value = e.data.rates[currency.currency];
+                        if (currency.value != "N/A"){
+                            var rate = value / currency.value - 1;
+                            currency.rate = (rate * 100).toString().slice(0,4);
+                        }
+                        currency.value = value;
+
+
+
+                        // console.log(currency);
+
+                }, function(e) {
+                    console.log("error");
+                    console.log(e);
+                });
+                // return val;
+            }
+
+            var stop = -1;
+            $scope.updateValues = function() {
+                for (var i in $scope.currencies) {
+                    getValue($scope.currencies[i]);
+                }
+                console.log("atualizado click");
+                if (stop != -1) {
+                    $interval.cancel(stop);
+                    startIntervals();
+
+                }
+            }
+
+            function startIntervals() {
+                stop = $interval(function() {
+                    console.log("intervalo atualiza");
+                    $scope.updateValues();
+                }, 30000);
+            }
+
+            $scope.updateValues();
+            startIntervals();
+
+
+            $scope.calcExchange = function(value) {
+                var from = $scope.currency_from;
+                var to = $scope.currency_to;
+
+                val_from = from != "USD" ? $scope.currencies[from].value: 1;
+                val_to = to != "USD"? $scope.currencies[to].value: 1;
+                return (value * val_to / val_from).toString().slice(0, 6) || "Digite para converter";
+            }
+
+        });
+    </script>
+
+
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
+        <header class="mdl-layout__header" style="background-color:rgb(0,200,200)">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">ATG{{firstName}}</span>
+                <span class="mdl-layout-title">ATG <img ng-src="atgT.png"/> </span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <!-- colocar navegação -->
-                    <!--<a class="mdl-navigation__link" href="" style="color:gray">Home</a>
-               <a class="mdl-navigation__link" href="" style="color:gray">About</a>      -->
+                    <!--<!--<a class="mdl-navigation__link" href="" style="color:gray">Home</a>-->
+                    <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:gray">Update</button>
                 </nav>
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">ATG</span>
+            <span class="mdl-layout-title">ATG <img ng-src="atg.png"/> 
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="">Estatísticas</a>
                 <a class="mdl-navigation__link" href="">Serviços</a>
@@ -36,66 +163,65 @@ app.controller('myCtrl', function($scope) {
         </div>
         <main class="mdl-layout__content">
             <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
-                    <div class="" style="background-color:blue">
-                        <div><img style="max-width:25%;max-height:25%" src="EUR.png" /> <span >EUR </span> <b style="padding-left:30%"> € 8,88</b></div>
-                    <!--<div class="mdl-card__text"> 
+                <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp" style="background-color:rgb(0,200,200)">
+                        <img style="max-width:25%;" ng-src="{{currency.name + '.png'}}" /> 
+                        <span style="font-size: 1.25em; color:white">
+                            {{currency.name}}  {{currency.symbol}} {{currency.value}} 
+                            <span ng-class="currency.rate>=0? 'GREEN':'RED'"> {{currency.rate!= "--"?"(":""}} {{currency.rate>0? "+":""}}  {{currency.rate!= "--"? currency.rate+ "%)":""}}</span>
+                        </span>
+
+
+
+            <!--<div class="mdl-card__text"> 
                         
                         </div>-->
-                    </div>
-                </div>
-                
-
-                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
-                    <div class="" style="background-color:blue">
-                        <div><img style="max-width:25%;max-height:25%" src="GBP.png" /> GBP </div>
-                    </div>
-                    <div class="mdl-card__text"> £ 8,88</div>
-                </div>
-                <div class="mdl-cell mdl-cell--3-col mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title" style="background-color:blue">
-                        <div><img style="max-width:25%;max-height:25%" src="JPY.png" /> JPY</div>
-                    </div>
-                    <div class="mdl-card__text">¥ 8,88</div>
-                </div>
-                <div class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp">
-                    <div class="" style="background-color:blue">
-                        <div><img style="max-width:25%;max-height:25%" src="CNH.png" /> CNH</div>
-                    </div>
-                    <div class="mdl-card__text">¥ 8,88</div>
-                </div>
-            </div>
-            <div class="mdl-grid">
-                <div class="md-cell ">
-                    <div class="mdl-grid">
-                        <select name="" id="">
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="JPY">JPY</option>
-                            <option value="CNH">CNH</option>
-                        </select>
-                    </div>
-                    <div class="md-cell">
-                        <input type="number" />
-                    </div>
-                </div>
-                <div class="md-cell md-cell--2-col">
-                    <div class="mdl-grid">
-                        <select name="" id="">
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="JPY">JPY</option>
-                            <option value="CNH">CNH</option>
-                        </select>
-                    </div>
-                    <div class="md-cell">
-                        <input type="number" />
-                    </div>
-                    </div>
-                </div>
-            
-        </main>
+        </div>
     </div>
+
+    <div class="mdl-grid " style="margin-right: 30% !important;  margin-left: 30% !important; font-size:1.5em">
+        <div class="mdl-cell mdl-cell--1-col-phone">
+            <div class="mdl-grid">
+                Exchange <select ng-model="currency_from" name="" id="" value="EUR">
+                            <option value="USD" >USD</option>
+                            <option value="EUR" selected>EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                            <option value="CNH">CNH</option>
+                        </select>
+            </div>
+
+        </div>
+        <div class="mdl-cell mdl-cell--1-col-phone">
+            <div class="mdl-grid">
+                <input style="width:50%" ng-model="currency_value_from" type="number" />
+            </div>
+        </div>
+
+        <div class="mdl-cell mdl-cell mdl-cell--1-col-phone">
+            <div class="mdl-grid">
+                To <select ng-model="currency_to" name="" id="" value="GBP">
+                            <option value="USD" >USD </option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP" selected>GBP</option>
+                            <option value="JPY">JPY</option>
+                            <option value="CNH">CNH</option>
+                        </select>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-grid">
+        <div class="mdl-cell">
+            <!--<input ng-model="currency_value_to" type="number" />-->
+            <center class="INFO-CENTER">
+                {{currencies[currency_from].symbol}} {{currency_value_from}} ({{currency_from}}) is equal to {{currencies[currency_to].symbol}} {{ calcExchange(currency_value_from)}} ({{currency_to}})
+            </center>
+        </div>
+    </div>
+
+    <!--{{currencies}}-->
+    </main>
+    </div>
+
 </body>
 
 </html>
