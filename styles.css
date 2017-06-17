@@ -1,0 +1,24 @@
+
+    .INFO-CENTER {
+        right: 0;
+        left: 0;
+        position: absolute;
+        font-size: 1.5em;
+    }
+    
+    ;
+    .BOX {
+        color: #fff;
+        background-color: blue;
+    }
+
+    .GREEN {
+        color:#0f0;
+        font-weight: bold;
+    }
+
+    .RED{
+        color: #f00;
+        font-weight: bold;  
+    }
+

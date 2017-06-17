@@ -1,38 +1,15 @@
 <!DOCTYPE html>
 <html>
-<style>
-    .INFO-CENTER {
-        right: 0;
-        left: 0;
-        position: absolute;
-        font-size: 1.5em;
-    }
-    
-    ;
-    .BOX {
-        color: #fff;
-        background-color: blue;
-    }
-
-    .GREEN {
-        color:#0f0;
-        font-weight: bold;
-    }
-
-    .RED{
-        color: #f00;
-        font-weight: bold;  
-    }
-</style>
 
 <head>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
 
 <body ng-app="myApp" ng-controller="myCtrl">
@@ -142,7 +119,7 @@
         <header class="mdl-layout__header" style="background-color:rgb(0,200,200)">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">ATG <img ng-src="atgT.png"/> </span>
+                <span class="mdl-layout-title">ATG <img ng-src="imgs/atgT.png"/> </span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
@@ -154,7 +131,7 @@
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">ATG <img ng-src="atg.png"/> 
+            <span class="mdl-layout-title">ATG <img ng-src="imgs/atg.png"/> 
             <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="">Estatísticas</a>
                 <a class="mdl-navigation__link" href="">Serviços</a>
@@ -164,7 +141,7 @@
         <main class="mdl-layout__content">
             <div class="mdl-grid">
                 <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp" style="background-color:rgb(0,200,200)">
-                        <img style="max-width:25%;" ng-src="{{currency.name + '.png'}}" /> 
+                        <img style="max-width:25%;" ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
                         <span style="font-size: 1.25em; color:white">
                             {{currency.name}}  {{currency.symbol}} {{currency.value}} 
                             <span ng-class="currency.rate>=0? 'GREEN':'RED'"> {{currency.rate!= "--"?"(":""}} {{currency.rate>0? "+":""}}  {{currency.rate!= "--"? currency.rate+ "%)":""}}</span>
