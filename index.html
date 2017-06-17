@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <!-- PARA APRENDER, USEI FRAMEWORK MATERIAL, MAS DEVERIA TER USADO MATERIALIZE, DEIXA QUIETO -->
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
+    <!--angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
 
+<body ng-app="myApp" ng-controller="myCtrl" class="BACKGROUND-ICE">
 
-<body ng-app="myApp" ng-controller="myCtrl"  class="BACKGROUND-ICE">
-    <script src="app.js"></script>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header" style="background-color:rgb(0,200,200)">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
+
+                <!-- link para ATG -->
                 <span class="mdl-layout-title"><a  href="http://www.americastg.com/pt/ATG_pt"> ATG <img ng-src="imgs/atgT.png"/> </a></span>
-                <!-- Add spacer, to align navigation to the right -->
+
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
-                    <!-- colocar navegação -->
+
+                    <!--atualiza os valores-->
                     <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:gray">Update</button>
-                    <b >{{hora}}</b>
+                    <b>{{hora}}</b>
                 </nav>
             </div>
         </header>
@@ -37,19 +41,21 @@
                 <a class="mdl-navigation__link" href="">Configuração</a>
             </nav>
         </div>
+
+        <!-- core da aplicação abaixo-->
         <main class="mdl-layout__content">
             <div class="mdl-grid">
                 <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col  mdl-shadow--2dp BACKGROUND-CYAN WHITE">
                         <img style="max-width:25%; " ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
                         
                             <span style="font-size:0.75em"> USD/{{currency.name}} </span>
-                            <span style="font-size: 1.25em; "> 
+            <span style="font-size: 1.25em; "> 
                                 {{currency.symbol}} {{currency.value}} 
                             <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.75em"> 
                                 ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
                                 <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
                             </span>
-                        </span>
+            </span>
             <!--<div class="mdl-card__text"></div>-->
         </div>
     </div>
@@ -62,7 +68,7 @@
         </div>
         <div class="mdl-cell mdl-cell--1-col-phone">
             <div class="mdl-grid">
-                 <select ng-model="currency_from" name="" id="" value="EUR">
+                <select ng-model="currency_from"  value="EUR">
                             <option value="USD" >USD - Dollar</option>
                             <option value="EUR" selected>EUR- Euro</option>
                             <option value="GBP">GBP - Pound Sterling</option>
@@ -75,7 +81,7 @@
 
         <div class="mdl-cell mdl-cell mdl-cell--1-col-phone">
             <div class="mdl-grid">
-                To <select ng-model="currency_to" name="" id="" value="GBP">
+                To <select ng-model="currency_to" value="GBP">
                             <option value="USD" >USD - Dollar</option>
                             <option value="EUR" >EUR- Euro</option>
                             <option value="GBP" selected>GBP - Pound Sterling</option>
@@ -94,11 +100,8 @@
     </div>
 
     <!--{{currencies}}-->
-    <small >    (obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
+    <small>(obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
     </main>
     </div>
-    
-
 </body>
-
 </html>
