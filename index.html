@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-      <!-- USEI MATERIAL E MATERIALIZE -->
+      <!-- USEI MATERIAL E MATERIALIZE PARA APRENDER-->
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
@@ -14,6 +14,22 @@
     <link rel="stylesheet" href="styles.css">
     
 </head>
+
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+    <script>
+         $(document).ready(function() {
+            $('#fromSel').material_select("");
+            $('#toSel').material_select("");
+                                
+          });
+    </script>
+    <!--CARREGAR MATERIALIZE ANTES DE ANGULAR --> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="app.js"></script>
 
 <body ng-app="myApp" ng-controller="myCtrl" class="BACKGROUND-ICE">  
 
@@ -108,25 +124,6 @@
     </div>
 
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-
-
-    <script>
-        // (function(){
-         $(document).ready(function() {
-            $('#fromSel').material_select("");
-            // $('#fromSel').on('change',function(){ console.log("kljsdfh")});
-            $('#toSel').material_select("");
-                                
-          });
-
-        // })();
-    </script>
-    <!--CARREGAR MATERIALIZE ANTES DE ANGULAR --> 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="app.js"></script>
 </body>
 
 </html>

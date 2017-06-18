@@ -1,5 +1,10 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http, $interval) {
+    DEFAULT_VALUE_CURRENCY = "N/A";
+    DEFAULT_RATE_CURRENCY = "--";
+    TIME_UPDATE_VALUES = 30000;
+    CURRENCY_BASE = "USD";
+
     $scope.currency_to = $("#toSel").val();
     $scope.currency_from =  $("#fromSel").val();
     $scope.currency_value_from = 1;
@@ -15,7 +20,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             currency: "EUR",
             symbol: "€",
             value: 0.9, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
-            rate: "--"
+            rate: DEFAULT_RATE_CURRENCY
 
         },
         GBP: {
@@ -23,30 +28,34 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             currency: "GBP",
             symbol: "£",
             value: 0.7, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
-            rate: "--"
+            rate: DEFAULT_RATE_CURRENCY
         },
         JPY: {
             name: "JPY",
             currency: "JPY",
             symbol: "¥",
-            value: "N/A",
-            rate: "--"
+            value: DEFAULT_VALUE_CURRENCY,
+            rate: DEFAULT_RATE_CURRENCY
         },
         CNH: {
             name: "CNH",
             currency: "CNY",
             symbol: "¥",
-            value: "N/A",
-            rate: "--"
+            value: DEFAULT_VALUE_CURRENCY,
+            rate: DEFAULT_RATE_CURRENCY
         },
     };
 
+    // A API RECOMENDADA NAO FUNCIONOU OS VALORES PARA CHINA
+    // ENVIEI UM EMAIL A ELES REPORTANDO O CASO
+    // OUTRAS APIS TINHA LIMITE DE USO
+    // A API UTILIZADA É GRATUITA, MAS PARECE QUE NÃO ATUALIZA EM TEMPO REAL
     function getValue(currency) {
-        $http.get("https://api.fixer.io/latest?base=USD&symbols=" + currency.currency).
+        $http.get("https://api.fixer.io/latest?base="+CURRENCY_BASE +"&symbols=" + currency.currency).
         then(function(e) {
             console.log("success");
             var value = e.data.rates[currency.currency];
-            if (currency.value != "N/A") {
+            if (currency.value != DEFAULT_VALUE_CURRENCY) {
                 var rate = value / currency.value - 1;
                 currency.rate = (rate * 100).toString().slice(0, 4);
             }
@@ -76,7 +85,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         stop = $interval(function() {
             console.log("intervalo atualiza");
             $scope.updateValues();
-        }, 30000);
+        }, TIME_UPDATE_VALUES);
     }
 
 
@@ -88,8 +97,8 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         var from = $scope.currency_from;
         var to = $scope.currency_to;
 
-        val_from = from != "USD" ? $scope.currencies[from].value : 1;
-        val_to = to != "USD" ? $scope.currencies[to].value : 1;
+        val_from = from != CURRENCY_BASE  ? $scope.currencies[from].value : 1;
+        val_to = to != CURRENCY_BASE  ? $scope.currencies[to].value : 1;
         return (value * val_to / val_from).toString().slice(0, 6) || "Digite para converter";
     }
 
