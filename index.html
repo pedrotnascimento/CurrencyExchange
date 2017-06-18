@@ -29,7 +29,8 @@
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <!--atualiza os valores-->
-                    <b lass="mdl-navigation__link" >{{hora}}</b>
+                    <b class="mdl-navigation__link hide-on-small-only" >{{hora.toLocaleString()}}</b>
+                    <b class="mdl-navigation__link hide-on-med-and-up" >{{hora.toLocaleTimeString()}}</b>
                 <button class="mdl-navigation__link" href="" ng-click="updateValues()" style="color:rgb(0,200,200)">  <i class="material-icons">loop</i></button>
             </div>
         </header>
@@ -99,11 +100,9 @@
         <!--</div>-->
     <!--</div>-->
 
-    <!--{{currencies}}-->        
-    <small>(obs: se o conteúdo parecer estar com problema, verificar se o browser proibiu a execução de scripts)</small>
-    
-    <div>
-        <small>(obs2: depois de ver no browse, ver no modo mobile, ou no próprio mobile em <a href="https://pedrotnascimento.github.io">pedrotnascimento.github.io</a>)</small>
+    <!--{{currencies}}-->            
+    <div class="hide-on-small-only">
+        <small>(obs: depois de ver no browse, ver no modo mobile, ou no próprio mobile em <a href="https://pedrotnascimento.github.io">pedrotnascimento.github.io</a>)</small>
     </div>
     </main>
     </div>

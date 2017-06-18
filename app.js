@@ -6,7 +6,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     $scope.hora="";
 
     $interval(function(){
-        $scope.hora = (new Date()).toLocaleString();
+        $scope.hora = new Date();
     }, 1000);
     //€£¥
     $scope.currencies = {
