@@ -63,18 +63,27 @@
         <!-- core da aplicação abaixo-->
         <main class="mdl-layout__content">
             <div class="row">
-                <div class="mdl-grid col ">
+                <div class="mdl-grid ">
                     <div ng-repeat="currency in currencies" class="mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-phone  mdl-shadow--2dp BACKGROUND-CYAN WHITE">
                             <img style="max-width:25%; " ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
                             
                                 <span style="font-size:0.75em"> USD/{{currency.name}} </span>
                 <span style="font-size: 1.20em; "> 
                                     {{currency.symbol}} {{currency.value}} 
-                </span>
-                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.65em"> 
+                </span> 
+                <span class="hide-on-med-and-up">
+                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.60em"> 
                                     ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
                                     <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
                                 </span>
+                </span>
+                <span class="hide-on-small-only">
+                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.75em"> 
+                                    ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
+                                    <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
+                                </span>
+                </span>
+                
                 <!--<div class="mdl-card__text"></div>-->
                         </div>
                     </div>
