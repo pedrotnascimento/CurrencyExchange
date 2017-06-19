@@ -19,7 +19,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             name: "EUR",
             currency: "EUR",
             symbol: "€",
-            value: 0.9, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
+            value: DEFAULT_VALUE_CURRENCY,  
             rate: DEFAULT_RATE_CURRENCY
 
         },
@@ -27,7 +27,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
             name: "GBP",
             currency: "GBP",
             symbol: "£",
-            value: 0.7, //pre-defini para poder observar melhor a mudança de valor, o default é "N/A"
+            value:DEFAULT_VALUE_CURRENCY, 
             rate: DEFAULT_RATE_CURRENCY
         },
         JPY: {
@@ -39,25 +39,22 @@ app.controller('myCtrl', function($scope, $http, $interval) {
         },
         CNH: {
             name: "CNH",
-            currency: "CNY",
+            currency: "CNH",
             symbol: "¥",
             value: DEFAULT_VALUE_CURRENCY,
             rate: DEFAULT_RATE_CURRENCY
         },
     };
 
-    // A API RECOMENDADA NAO FUNCIONOU OS VALORES PARA CHINA
-    // ENVIEI UM EMAIL A ELES REPORTANDO O CASO
-    // OUTRAS APIS TINHA LIMITE DE USO
-    // A API UTILIZADA É GRATUITA, MAS PARECE QUE NÃO ATUALIZA EM TEMPO REAL
+
     function getValue(currency) {
-        $http.get("https://api.fixer.io/latest?base="+CURRENCY_BASE +"&symbols=" + currency.currency).
+        $http.get("https://forex.1forge.com/1.0.1/quotes?pairs="+ CURRENCY_BASE+ currency.currency).
         then(function(e) {
             console.log("success");
-            var value = e.data.rates[currency.currency];
+            var value = e.data[0].price;
             if (currency.value != DEFAULT_VALUE_CURRENCY) {
                 var rate = value / currency.value - 1;
-                currency.rate = (rate * 100).toString().slice(0, 4);
+                currency.rate = parseFloat((rate * 100).toString().slice(0, 6));
             }
             currency.value = value;
 

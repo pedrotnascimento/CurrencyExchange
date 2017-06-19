@@ -68,13 +68,13 @@
                             <img style="max-width:25%; " ng-src="{{'imgs/' +currency.name + '.png'}}" /> 
                             
                                 <span style="font-size:0.75em"> USD/{{currency.name}} </span>
-                <span style="font-size: 1.25em; "> 
+                <span style="font-size: 1.20em; "> 
                                     {{currency.symbol}} {{currency.value}} 
-                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.75em"> 
+                </span>
+                                <span ng-if="currency.rate!='--'" ng-class="currency.rate>=0? 'GREEN':'RED'" style="font-size:0.65em"> 
                                     ({{currency.rate>0? "+":""}}  {{currency.rate+ "%"}})
                                     <img style="width:1em" ng-if="currency.rate*1!=0" ng-src="{{currency.rate>0?'imgs/upT.png':'imgs/downT.png'}}"/>
                                 </span>
-                </span>
                 <!--<div class="mdl-card__text"></div>-->
                         </div>
                     </div>
