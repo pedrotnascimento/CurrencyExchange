@@ -56,7 +56,7 @@ app.controller('myCtrl', function($scope, $http, $interval) {
                 var rate = value / currency.value - 1;
                 currency.rate = parseFloat((rate * 100).toString().slice(0, 6));
             }
-            currency.value = value;
+            currency.value = parseFloat(value.toString().slice(0,7));
 
         }, function(e) {
             console.log("error");
@@ -116,7 +116,6 @@ app.controller('myCtrl', function($scope, $http, $interval) {
     }
 
     $scope.invertCalc = function () {
-
         var temp = $scope.currency_from;
         $scope.currency_from = $scope.currency_to;
         $scope.currency_to = temp;
